@@ -10,13 +10,11 @@ int main(void) {
 	char* functionStr = StringAlloc(MAX_LENGTH_OF_FUNCTION);
 	int strLenght = 0;
 
+	printf_s("Enter your task :\nExamples : (124+(1293-213))	sqrt(7+(3-2))	(3*(5+4))	sin((3.14/2))\n");
+
 	strLenght = InputString(functionStr, MAX_LENGTH_OF_FUNCTION);
 
-	for (int i = 0; i < strLenght; ++i) {
-		printf_s("%c", functionStr[i]);
-	}
-
-	printf_s("%d %d\n", FindChar(functionStr, 'k', strLenght), FindCharL(functionStr, 'k', strLenght));
+	printf_s("Result : %lf\n", FunctionResDeep(functionStr, strLenght - 1));
 
 	free(functionStr);
 	system("pause");
