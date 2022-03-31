@@ -5,6 +5,7 @@
 #include <math.h>
 
 #define ERR_ALLOC "Allocation failed;("
+#define RES_STR_LENGTH 30
 
 char* StringAlloc(int length) {
 	char* str = (char*)malloc(sizeof(char) * length);
@@ -91,8 +92,11 @@ double Atoi(char* str, int length) {
 }
 
 double FunctionRes(char* str, int length) {
-	if (str[0] == '-') {
-		return -1 * atoi(str);
+	if (str[1] == '-') {
+		return atof(Substr(str, 1, length - 2));
+	}
+	else if (str[0] == '-') {
+		return atof(Substr(str, 0, length - 1));
 	}
 	char operation = 'n';
 	int indexOfOperator = -1;
@@ -189,12 +193,7 @@ double FunctionRes(char* str, int length) {
 
 double FunctionResDeep(char* str, int length) {
 	if (CountOfChar(str, '(', length) == 0) {
-		if (str[0] == '-') {
-			return -1 * atof(str);
-		}
-		else {
-			return atof(str);
-		}
+		return atof(str);
 	}
 	int* deep = (int*)malloc(sizeof(int) * length);
 	if (!deep) {
@@ -244,16 +243,27 @@ double FunctionResDeep(char* str, int length) {
 				++i;
 			}
 			double res = FunctionRes(Substr(str, indexStart, indexFinish), indexFinish - indexStart + 1);
-			char* resStr = StringAlloc(30);
+			char* resStr = StringAlloc(RES_STR_LENGTH);
 			
 			int dec, sign;
-			_ecvt_s(resStr, 20, res, 15, &dec, &sign);
+			_ecvt_s(resStr, RES_STR_LENGTH, res, RES_STR_LENGTH - 2, &dec, &sign);
 			
-			for (int j = 20; j >= dec; --j) {
-				resStr[j] = resStr[j - 1];
+			if (dec >= 0) {
+				for (int j = RES_STR_LENGTH; j >= dec; --j) {
+					resStr[j] = resStr[j - dec];
+				}
+				resStr[dec] = '.';
+			}
+			else {
+				for(int j = RES_STR_LENGTH; j >= -1 * dec + 2; --j){
+					resStr[j] = resStr[j + dec - 2];
+				}
+				for (int j = 0; j < -1 * dec + 2; ++j) {
+					resStr[j] = '0';
+				}
+				resStr[1] = '.';
 			}
 			//resStr[dec + 1] = resStr[dec];
-			resStr[dec] = '.';
 			
 			if (sign) {
 				for (int j = 20; j >= 1; --j) {

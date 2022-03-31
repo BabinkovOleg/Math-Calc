@@ -14,7 +14,7 @@ int main(void) {
 
 	strLenght = InputString(functionStr, MAX_LENGTH_OF_FUNCTION);
 
-	printf_s("Result : %lf\n", FunctionResDeep(functionStr, strLenght - 1));
+	printf_s("Result : %.15f\n", FunctionResDeep(functionStr, strLenght - 1));
 
 	free(functionStr);
 	system("pause");
