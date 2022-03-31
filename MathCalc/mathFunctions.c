@@ -248,9 +248,9 @@ double FunctionResDeep(char* str, int length) {
 			int dec, sign;
 			_ecvt_s(resStr, RES_STR_LENGTH, res, RES_STR_LENGTH - 2, &dec, &sign);
 			
-			if (dec >= 0) {
-				for (int j = RES_STR_LENGTH; j >= dec; --j) {
-					resStr[j] = resStr[j - dec];
+			if (dec > 0) {
+				for (int j = RES_STR_LENGTH; j >= dec + 1; --j) {
+					resStr[j] = resStr[j - 1];
 				}
 				resStr[dec] = '.';
 			}
@@ -263,25 +263,17 @@ double FunctionResDeep(char* str, int length) {
 				}
 				resStr[1] = '.';
 			}
-			//resStr[dec + 1] = resStr[dec];
-			
 			if (sign) {
-				for (int j = 20; j >= 1; --j) {
+				for (int j = RES_STR_LENGTH; j >= 1; --j) {
 					resStr[j] = resStr[j - 1];
 				}
 				resStr[0] = '-';
 			}
 			
-			//printf_s("%d\n",dec);
-			//printf_s("%s\n",resStr);
-
 			return FunctionResDeep(Merge3(Substr(str, 0, indexStart), resStr, Substr(str, indexFinish + 1, length - 1), indexStart, 16, length - indexFinish), length - (indexFinish - indexStart) + 16);
 		}
 	}
-	//return 12;
-	//double res = F1unctionRes(str, length);
 	printf_s("\n");
-	//return res;
 	free(deep);
 }
 
