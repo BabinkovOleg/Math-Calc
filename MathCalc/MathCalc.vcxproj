@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClInclude Include="mathFunctions.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\button.png" />
+    <Image Include="resources\buttons.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

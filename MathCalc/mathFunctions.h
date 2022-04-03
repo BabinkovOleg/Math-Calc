@@ -11,3 +11,7 @@ double FunctionRes(char* str, int length);
 double FunctionResDeep(char* str, int length);
 char* Merge3(char* str1, char* str2, char* str3, int length1, int length2, int length3);
 char* Merge2(char* str1, char* str2, int length1, int length2);
+
+//int UpdateString(char* str, int length, int btnID);
+char* UpdateStr(int btnID);
+int UpdateLen(int btnID);
