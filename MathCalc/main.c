@@ -63,12 +63,10 @@ int main(void)
 	}
 
 	int* btnsState = (int*)malloc(sizeof(int) * NUM_BUTTONS);
-	bool* btnsAction = (bool*)malloc(sizeof(bool) * NUM_BUTTONS);
 	int btnAction = -1;
 
 	for (int i = 0; i < NUM_BUTTONS; ++i) {
 		btnsState[i] = 0;					// Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
-		btnsAction[i] = false;				// Button action should be activated
 	}
 	
 	char* result = StringAlloc(MAX_LENGTH_OF_FUNCTION);
@@ -109,7 +107,6 @@ int main(void)
 		}
 		if (btnAction == NUM_BUTTONS - 1) {
 			sprintf_s(result, MAX_LENGTH_OF_FUNCTION, "Result : %." ACCURACY "f+-10^(-" ACCURACY ")\n", FunctionResDeep(functionStr, functionLength));
-			//printf_s("%s%s", functionStr, result);
 		}
 
 		BeginDrawing();
@@ -125,15 +122,12 @@ int main(void)
 		DrawText(functionStr, 10, 10, 40, BLACK);
 		DrawText(result, 10, 60, 40, BLACK);
 
-		//sprintf_s(result, MAX_LENGTH_OF_FUNCTION, "%d", functionLength);
-
 		EndDrawing();
 	}
 
 	UnloadTexture(buttons);
 
 	free(btnsBounds);
-	free(btnsAction);
 	free(btnsState);
 	//free(functionStr);		//Error when close window idk why
 	free(result);
