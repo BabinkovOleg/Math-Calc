@@ -123,11 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="buttonActions.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mathFunctions.c" />
+    <ClCompile Include="stringFunctions.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="buttonActions.h" />
     <ClInclude Include="mathFunctions.h" />
+    <ClInclude Include="stringFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\button.png" />

@@ -25,6 +25,9 @@
 
 #include "raylib.h"
 #include "mathFunctions.h"
+#include "stringFunctions.h"
+#include "buttonActions.h"
+
 #include <malloc.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -106,7 +109,7 @@ int main(void)
 			functionStr[functionLength] = '\0';
 		}
 		if (btnAction == NUM_BUTTONS - 1) {
-			sprintf_s(result, MAX_LENGTH_OF_FUNCTION, "Result : %." ACCURACY "f+-10^(-" ACCURACY ")\n", FunctionResDeep(functionStr, functionLength));
+			sprintf_s(result, MAX_LENGTH_OF_FUNCTION, "Result : %." ACCURACY "f+-10^(-" ACCURACY ")\n", FunctionResDeep(Merge3("(", functionStr, ")", 1, functionLength, 1), functionLength + 2));
 		}
 
 		BeginDrawing();
